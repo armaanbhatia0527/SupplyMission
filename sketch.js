@@ -1,5 +1,6 @@
 var helicopterIMG, helicopterSprite, packageSprite,packageIMG;
 var packageBody,ground
+var bottombox2,rightbox,bottombox
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
@@ -14,9 +15,16 @@ function preload()
 function setup() {
 	createCanvas(800, 700);
 	rectMode(CENTER);
-	//this is a test +hjhello pc I am
 
-	
+	bottombox = createSprite(400,650,200,20)
+	rightbox = createSprite(510,610,20,100)
+	leftbox = createSprite(300,610,20,100)
+	bottombox.shapeColor = color("red")
+	rightbox.shapeColor = color("red")
+	leftbox.shapeColor = color("red")
+	bottombox = Bodies.rectangle(400,650,200,20 , {isStatic:true} );
+	leftbox = Bodies.rectangle(510,610,20,100, {isStatic:true} );
+	rightbox = Bodies.rectangle(300,610,20,100 , {isStatic:true} );
 
 	packageSprite=createSprite(width/2, 80, 10,10);
 	packageSprite.addImage(packageIMG)
@@ -34,7 +42,7 @@ function setup() {
 	world = engine.world;
 
 	
-	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.5, isStatic:true});
+	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.0, isStatic:true});
 	World.add(world, packageBody);
 	
 
@@ -45,6 +53,8 @@ function setup() {
 	 console.log(packageSprite);
 
 	Engine.run(engine);
+
+	
   
 }
 
